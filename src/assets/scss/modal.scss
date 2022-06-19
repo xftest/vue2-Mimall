@@ -1,0 +1,49 @@
+.modal {
+    z-index: 10;
+    @include position(fixed);
+    transition: all 0.3s;
+    .mask {
+        @include position(fixed);
+        background-color: $colorI;
+        opacity: 0.5;
+    }
+    &.slide-enter-active,
+    &.slide-leave-active {
+        transition: opacity 0.5s;
+        top: -100%;
+    }
+    &.slide-enter,
+    &.slide-leave-to/* .fade-leave-active below version 2.1.8 */
+    {
+        opacity: 0;
+        top: 0;
+    }
+    .modal-dialog {
+        @include position(absolute, 40%, 50%, 660px, auto);
+        background-color: $colorG;
+        transform: translate(-50%, -50%);
+    }
+    .modal-header {
+        height: 60px;
+        background-color: $colorJ;
+        padding: 0 25px;
+        line-height: 60px;
+        font-size: $fontI;
+        .icon-close {
+            @include positionImg( absolute, 23px, 25px, 14px, 14px, "/public/imgs/icon-close.png");
+            transition: transform 0.3s;
+            &:hover {
+                transform: scale(1.5);
+            }
+        }
+    }
+    .modal-body {
+        padding: 42px 40px 54px;
+    }
+    .modal-footer {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        background-color: $colorJ;
+    }
+}
