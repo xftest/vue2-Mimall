@@ -36,4 +36,9 @@ module.exports = defineConfig({
             },
         },
     },
+    productionSourceMap: false, // 关闭sourcemap
+    chainWebpack: (config) => {
+        // 删除预加载 rel= prefetch预加载标签,防止一次性把文件都拉出来
+        config.plugins.delete("prefetch");
+    },
 });

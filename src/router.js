@@ -1,17 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./pages/home";
 import Index from "./pages/index";
-import Product from "./pages/product";
-import Detail from "./pages/detail";
-import Cart from "./pages/cart";
-import Order from "./pages/order";
-import OrderConfirm from "./pages/orderConfirm";
-import OrderList from "./pages/orderList";
-import OrderPay from "./pages/orderPay";
-import AliPay from "./pages/alipay";
-import Login from "./pages/login";
-
+import Home from "./pages/home";
 Vue.use(Router);
 
 const routes = [{
@@ -21,21 +11,61 @@ const routes = [{
         redirect: "/index",
         children: [
             { path: "index", name: "index", component: Index },
-            { path: "product/:id", name: "product", component: Product },
-            { path: "detail/:id", name: "detail", component: Detail },
+            {
+                path: "product/:id",
+                name: "product",
+                component: () =>
+                    import ("./pages/product"),
+            },
+            {
+                path: "detail/:id",
+                name: "detail",
+                component: () =>
+                    import ("./pages/detail"),
+            },
         ],
     },
-    { path: "/login", name: "login", component: Login },
-    { path: "/cart", name: "cart", component: Cart },
+    {
+        path: "/login",
+        name: "login",
+        component: () =>
+            import ("./pages/login"),
+    },
+    {
+        path: "/cart",
+        name: "cart",
+        component: () =>
+            import ("./pages/cart"),
+    },
     {
         path: "/order",
         name: "order",
-        component: Order,
-        children: [
-            { path: "confirm", name: "order-confirm", component: OrderConfirm },
-            { path: "list", name: "order-list", component: OrderList },
-            { path: "pay", name: "order-pay", component: OrderPay },
-            { path: "alipay", name: "alipay", component: AliPay },
+        component: () =>
+            import ("./pages/order"),
+        children: [{
+                path: "confirm",
+                name: "order-confirm",
+                component: () =>
+                    import ("./pages/orderConfirm"),
+            },
+            {
+                path: "list",
+                name: "order-list",
+                component: () =>
+                    import ("./pages/orderList"),
+            },
+            {
+                path: "pay",
+                name: "order-pay",
+                component: () =>
+                    import ("./pages/orderPay"),
+            },
+            {
+                path: "alipay",
+                name: "alipay",
+                component: () =>
+                    import ("./pages/alipay"),
+            },
         ],
     },
 ];
