@@ -40,5 +40,9 @@ module.exports = defineConfig({
     chainWebpack: (config) => {
         // 删除预加载 rel= prefetch预加载标签,防止一次性把文件都拉出来
         config.plugins.delete("prefetch");
+        config.plugin("html").tap((args) => {
+            args[0].title = "仿小米商城";
+            return args;
+        });
     },
 });
